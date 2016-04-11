@@ -32,6 +32,9 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
+//add by jipan
+var msgs = [];
+
 // Wait for socket event
 io.on('connection', function(socket){
     console.log('a user connected');
