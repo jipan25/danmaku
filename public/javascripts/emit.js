@@ -24,6 +24,6 @@ $('#btnSend').click(function(e){
     };
     var msg=JSON.stringify(danmaku);
     console.log(msg);
-    socket.emit('danmaku send',msg);
+    socket.emit('danmaku check',msg);
     $('#msg').val("");
 });

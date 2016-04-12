@@ -8,17 +8,16 @@ window.addEventListener('load', function () {
     //window.CM = CM;
 	
 	var socket = io();
-    socket.on('danmaku show', function (msg) {
+    socket.on('danmaku approval', function (msg) {
         console.log(msg);
-        $('#messages').append($('<li>').text(msg));
+        $('#messages').append($('<li>').html(JSON.parse(msg).text).click(function(e){
+			e.preventDefault();
+			//var msg2=JSON.stringify(msg);
+			console.log(msg);
+			socket.emit('danmaku send',msg);
+			$(this).remove();
+		}));
         //var danmaku = JSON.parse(msg);
         //CM.send(danmaku);
     });
-});
-$('li').live('click', function(e){
-    e.preventDefault();
-    var msg=JSON.stringify(danmaku);
-    console.log(msg);
-    socket.emit('danmaku send',msg);
-    $('#msg').val("");
 });
